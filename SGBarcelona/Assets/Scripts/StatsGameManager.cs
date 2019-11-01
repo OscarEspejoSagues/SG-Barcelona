@@ -4,18 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 
-public class Card
-{
-    Card Consequence; //this refers to the main card that provoke if you accept or deny a card
-    string Description;
-
-    int[] ValuesIfOk;
-    int[] ValuesIfDeny;
-
-}
-
-
-public class GameManager : MonoBehaviour
+public class StatsGameManager : MonoBehaviour
 {
 
     public GameObject GameStats;
@@ -26,6 +15,7 @@ public class GameManager : MonoBehaviour
     private Slider _moneyIndicator;
     private Slider _happinessIndicator;
     private Slider _citystateIndicator;
+
 
     void Awake()
     {
