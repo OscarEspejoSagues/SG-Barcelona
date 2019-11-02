@@ -18,6 +18,8 @@ public class StatsGameManager : MonoBehaviour
     private Slider _happinessIndicator;
     private Slider _citystateIndicator;
 
+    private Text _cardDescription;
+
 
     void Awake()
     {
@@ -25,6 +27,7 @@ public class StatsGameManager : MonoBehaviour
         _moneyIndicator = GameStats.transform.GetChild(0).GetComponent<Slider>();
         _happinessIndicator = GameStats.transform.GetChild(1).GetComponent<Slider>();
         _citystateIndicator = GameStats.transform.GetChild(2).GetComponent<Slider>();
+        _cardDescription = GameCard.transform.GetChild(0).GetComponent<Text>(); //CARD DESCRIPTION
     }
 
     // Start is called before the first frame update
@@ -82,7 +85,6 @@ public class StatsGameManager : MonoBehaviour
         }
         Debug.Log("THE NUMBER OF CARDS IS: " + MyDeck.Count);
     }
-
 
     // Update is called once per frame
     void Update()
