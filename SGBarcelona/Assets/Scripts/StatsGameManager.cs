@@ -18,16 +18,25 @@ public class StatsGameManager : MonoBehaviour
     private Slider _happinessIndicator;
     private Slider _citystateIndicator;
 
+    private Card _currentCardToShow;
+    
+    //----UI
     private Text _cardDescription;
+    private Image _cardImage;
 
 
     void Awake()
     {
         GenerateDeck();
+
+        //----UI sliders
         _moneyIndicator = GameStats.transform.GetChild(0).GetComponent<Slider>();
         _happinessIndicator = GameStats.transform.GetChild(1).GetComponent<Slider>();
         _citystateIndicator = GameStats.transform.GetChild(2).GetComponent<Slider>();
+
+        //----UI
         _cardDescription = GameCard.transform.GetChild(0).GetComponent<Text>(); //CARD DESCRIPTION
+        _cardImage = GameCard.transform.GetChild(1).GetComponent<Image>();
     }
 
     // Start is called before the first frame update
@@ -36,6 +45,7 @@ public class StatsGameManager : MonoBehaviour
         ResetValue();
         ButtonYes.onClick.AddListener(AcceptAction);
         ButtonNo.onClick.AddListener(DenyAction);
+        CardToUI(_currentCardToShow);
     }
 
 
@@ -48,12 +58,33 @@ public class StatsGameManager : MonoBehaviour
 
     public void AcceptAction()
     {
-        Debug.Log("ACCEPT ACTION");
+        ApplyCard(true, _currentCardToShow);
     }
 
     public void DenyAction()
     {
-        Debug.Log("DENY ACTION");
+        ApplyCard(false, _currentCardToShow);
+    }
+
+    public void ApplyCard(bool Accept, Card currentCard)
+    {
+        if (Accept)
+        {
+            Debug.Log("ACCEPT ACTION");
+            float aux = (0.25f * currentCard.MoneyY)+_moneyIndicator.value;
+            _moneyIndicator.value = aux;
+        }
+        else
+        {
+            Debug.Log("DENY ACTION");
+            float aux = (0.25f * currentCard.MoneyY) + _moneyIndicator.value;
+            _moneyIndicator.value = aux;
+        }
+    }
+
+    public void CardToUI(Card currentCard)//de la base de datos a mostrarla por pantalla
+    {
+        _cardDescription.text = currentCard.Description;
     }
 
     public void GenerateDeck()
@@ -81,9 +112,13 @@ public class StatsGameManager : MonoBehaviour
             int.TryParse(row[10], out ncard.EventY);
             int.TryParse(row[11], out ncard.EventN);
 
+            if (ncard.Id == 1)
+            {
+                _currentCardToShow = new Card(ncard);
+            }
+
             MyDeck.Add(ncard);
         }
-        Debug.Log("THE NUMBER OF CARDS IS: " + MyDeck.Count);
     }
 
     // Update is called once per frame
