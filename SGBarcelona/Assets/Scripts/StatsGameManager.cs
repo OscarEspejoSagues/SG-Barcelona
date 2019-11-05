@@ -11,6 +11,8 @@ public class StatsGameManager : MonoBehaviour
     public GameObject GameStats;
     public Button ButtonYes;
     public Button ButtonNo;
+    [SerializeField] Button Card;
+    [SerializeField] Button Description;
 
 
     private List<Card> MyDeck = new List<Card>();
@@ -19,7 +21,7 @@ public class StatsGameManager : MonoBehaviour
     private Slider _citystateIndicator;
 
     private Card _currentCardToShow;
-    
+
     //----UI
     private Text _cardDescription;
     private Image _cardImage;
@@ -45,6 +47,8 @@ public class StatsGameManager : MonoBehaviour
         ResetValue();
         ButtonYes.onClick.AddListener(AcceptAction);
         ButtonNo.onClick.AddListener(DenyAction);
+        Card.onClick.AddListener(CardDescription);
+        Description.onClick.AddListener(CloseDescription);
         CardToUI(_currentCardToShow);
     }
 
@@ -71,7 +75,7 @@ public class StatsGameManager : MonoBehaviour
         if (Accept)
         {
             Debug.Log("ACCEPT ACTION");
-            float aux = (0.25f * currentCard.MoneyY)+_moneyIndicator.value;
+            float aux = (0.25f * currentCard.MoneyY) + _moneyIndicator.value;
             _moneyIndicator.value = aux;
         }
         else
@@ -121,9 +125,20 @@ public class StatsGameManager : MonoBehaviour
         }
     }
 
+    public void CardDescription()
+    {
+        Description.gameObject.SetActive(true);
+        Card.gameObject.SetActive(false);
+    }
+    public void CloseDescription()
+    {
+        Description.gameObject.SetActive(false);
+        Card.gameObject.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 }
