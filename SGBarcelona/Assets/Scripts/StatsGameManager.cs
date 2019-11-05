@@ -70,16 +70,34 @@ public class StatsGameManager : MonoBehaviour
     {
         if (Accept)
         {
-            Debug.Log("ACCEPT ACTION");
-            float aux = (0.25f * currentCard.MoneyY)+_moneyIndicator.value;
-            _moneyIndicator.value = aux;
+            _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value,currentCard.MoneyY);
+            _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, currentCard.HappyY);
+            _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, currentCard.CityY);
         }
         else
         {
-            Debug.Log("DENY ACTION");
-            float aux = (0.25f * currentCard.MoneyY) + _moneyIndicator.value;
-            _moneyIndicator.value = aux;
+            _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, currentCard.MoneyN);
+            _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, currentCard.HappyN);
+            _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, currentCard.CityN);
         }
+    }
+
+    public float CalculateValueToSlider(float indicatorValue, float valueStat)
+    {
+        float aux = 0;
+        if (valueStat == 0)
+        {
+            aux = indicatorValue;
+        }
+        if (valueStat == -1)
+        {
+            aux = indicatorValue - 0.025f;
+        }
+        if (valueStat == 1)
+        {
+            aux = 0.025f + indicatorValue;
+        }
+        return aux;
     }
 
     public void CardToUI(Card currentCard)//de la base de datos a mostrarla por pantalla
