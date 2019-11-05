@@ -73,12 +73,16 @@ public class StatsGameManager : MonoBehaviour
             _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value,currentCard.MoneyY);
             _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, currentCard.HappyY);
             _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, currentCard.CityY);
+            currentCard = ChangeToNextCard();
+            CardToUI(currentCard);
         }
         else
         {
             _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, currentCard.MoneyN);
             _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, currentCard.HappyN);
             _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, currentCard.CityN);
+            currentCard = ChangeToNextCard();
+            CardToUI(currentCard);
         }
     }
 
@@ -98,6 +102,22 @@ public class StatsGameManager : MonoBehaviour
             aux = 0.025f + indicatorValue;
         }
         return aux;
+    }
+
+    public Card ChangeToNextCard()
+    {
+        Card nCard = new Card();
+        int random = Random.Range(1, 9);
+        for (int i = 0; i < MyDeck.Count; i++)
+        {
+            if (random == MyDeck[i].Id)
+            {
+                nCard = MyDeck[i];
+                break;
+            }
+        }
+        return nCard;
+
     }
 
     public void CardToUI(Card currentCard)//de la base de datos a mostrarla por pantalla
