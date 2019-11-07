@@ -1,10 +1,10 @@
-ID,Descripción,Dinero(Y),Felicidad(Y),Ciudad(Y),Dinero(N),Felicidad(N),Ciudad(N),Nivel del mar(Y),Nivel del mar(N),Evento(Y),Evento(N)
-1,Aplicas una ley que limita el número de vehiculos por família.,0,-1,1,0,0,1,0,1,0,0
-2,Financias una campaña de publicidad para concienciar sobre la reducción del C02,-1,0,1,0,1,1,0,1,0,0
-3,La L4 es la línea de metro más proxima al mar. ¿Quieres reforzarla para evitar futuras inundaciones?,-1,-1,1,0,0,0,0,0,0,4
-4,!Oh no¡ la L4 se ha inundado debido a que no la reforzaste.,-1,-1,-1,1,1,1,0,0,0,0
-5,El turismo en Barcelona está creciendo. ¿Quieres construir una nueva terminal?,1,0,-1,0,0,-1,-1,0,6,7
-6,Debido al aumento del tráfico aéreo tras la construcción de la T3 el aeropuerto del prat ha quedado completamente inundado.,1,-1,-1,1,1,1,0,0,0,0
-7,Se ha reducido turismo en Barcelona y con ello el tráfico aéreo.,1,-1,1,1,1,-1,0,0,0,0
-8,El nivel de C02 ha disminuido y el invierno ha sido mucho más frío.,0,0,0,0,0,0,-1,-1,0,0
-9,¿Quieres contruir una planta de reciclado de plásticos?,-1,1,1,0,0,0,-1,1,0,0
+ID,IsEvent,Descripción,Dinero(Y),Felicidad(Y),Ciudad(Y),Dinero(N),Felicidad(N),Ciudad(N),Nivel del mar(Y),Nivel del mar(N),Evento(Y),Evento(N)
+1,0,¿Quieres aplicar una ley que limite el número de vehículos por familia?,0,-1,1,0,0,1,0,1,0,0
+2,0,¿Quieres fiinanciar una campaña de publicidad para concienciar sobre la reducción del CO2?,-1,0,1,0,1,1,0,1,0,0
+3,0,La L4 es la línea de metro más proxima al mar. ¿Quieres reforzarla para evitar futuras inundaciones?,-1,-1,1,0,0,0,0,0,0,4
+4,1,¡Oh no! la L4 se ha inundado debido a que no la reforzaste.,-1,-1,-1,1,1,1,0,0,0,0
+5,0,El turismo en Barcelona está creciendo. ¿Quieres construir una nueva terminal?,1,0,-1,0,0,-1,-1,0,6,7
+6,1,Debido al aumento del tráfico aéreo tras la construcción de la T3 el aeropuerto del prat ha quedado completamente inundado.,1,-1,-1,1,1,1,0,0,0,0
+7,1,Se ha reducido turismo en Barcelona y con ello el tráfico aéreo.,1,-1,1,1,1,-1,0,0,0,0
+8,0,El nivel de CO2 ha disminuido y el invierno ha sido mucho más frío.,0,0,0,0,0,0,-1,-1,0,0
+9,0,¿Quieres contruir una planta de reciclado de plásticos?,-1,1,1,0,0,0,-1,1,0,0

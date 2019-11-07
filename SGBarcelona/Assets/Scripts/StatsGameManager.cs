@@ -62,31 +62,31 @@ public class StatsGameManager : MonoBehaviour
 
     public void AcceptAction()
     {
-        ApplyCard(true, _currentCardToShow);
+        ApplyCard(true);
     }
 
     public void DenyAction()
     {
-        ApplyCard(false, _currentCardToShow);
+        ApplyCard(false);
     }
 
-    public void ApplyCard(bool Accept, Card currentCard)
+    public void ApplyCard(bool Accept)
     {
         if (Accept)
         {
-            _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value,currentCard.MoneyY);
-            _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, currentCard.HappyY);
-            _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, currentCard.CityY);
-            currentCard = ChangeToNextCard();
-            CardToUI(currentCard);
+            _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyY);
+            _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyY);
+            _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityY);
+            _currentCardToShow = ChangeToNextCard();
+            CardToUI(_currentCardToShow);
         }
         else
         {
-            _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, currentCard.MoneyN);
-            _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, currentCard.HappyN);
-            _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, currentCard.CityN);
-            currentCard = ChangeToNextCard();
-            CardToUI(currentCard);
+            _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyN);
+            _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyN);
+            _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityN);
+            _currentCardToShow = ChangeToNextCard();
+            CardToUI(_currentCardToShow);
         }
     }
 
@@ -99,11 +99,11 @@ public class StatsGameManager : MonoBehaviour
         }
         if (valueStat == -1)
         {
-            aux = indicatorValue - 0.025f;
+            aux = indicatorValue - 0.050f;
         }
         if (valueStat == 1)
         {
-            aux = 0.025f + indicatorValue;
+            aux = 0.050f + indicatorValue;
         }
         return aux;
     }
@@ -138,21 +138,22 @@ public class StatsGameManager : MonoBehaviour
             Card ncard = new Card();
             //------
             int.TryParse(row[0], out ncard.Id);
-            ncard.Description = row[1];
+            int.TryParse(row[1], out ncard.isEvent);
+            ncard.Description = row[2];
             //------
-            int.TryParse(row[2], out ncard.MoneyY);
-            int.TryParse(row[3], out ncard.HappyY);
-            int.TryParse(row[4], out ncard.CityY);
+            int.TryParse(row[3], out ncard.MoneyY);
+            int.TryParse(row[4], out ncard.HappyY);
+            int.TryParse(row[5], out ncard.CityY);
             //------
-            int.TryParse(row[5], out ncard.MoneyN);
-            int.TryParse(row[6], out ncard.HappyN);
-            int.TryParse(row[7], out ncard.CityN);
+            int.TryParse(row[6], out ncard.MoneyN);
+            int.TryParse(row[7], out ncard.HappyN);
+            int.TryParse(row[8], out ncard.CityN);
             //------
-            int.TryParse(row[8], out ncard.SeaLvlY);
-            int.TryParse(row[9], out ncard.SeaLvlN);
+            int.TryParse(row[9], out ncard.SeaLvlY);
+            int.TryParse(row[10], out ncard.SeaLvlN);
             //------
-            int.TryParse(row[10], out ncard.EventY);
-            int.TryParse(row[11], out ncard.EventN);
+            int.TryParse(row[11], out ncard.EventY);
+            int.TryParse(row[12], out ncard.EventN);
 
             if (ncard.Id == 1)
             {

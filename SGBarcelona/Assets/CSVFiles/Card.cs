@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Card
 {
     public int Id;
-    public string Description;
+    public int isEvent;
+    public string Description; 
     //---------
     public int MoneyY;
     public int HappyY;
