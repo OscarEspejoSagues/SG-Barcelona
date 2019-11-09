@@ -16,11 +16,16 @@ public class StatsGameManager : MonoBehaviour
 
 
     private List<Card> MyDeck = new List<Card>();
+    private List<Card> MyEvents = new List<Card>();
+    private List<int> EventQueued = new List<int>();
+
     private Slider _moneyIndicator;
     private Slider _happinessIndicator;
     private Slider _citystateIndicator;
 
     private Card _currentCardToShow;
+
+    private int _counterCards; 
 
     //----UI
     private Text _cardDescription;
@@ -30,6 +35,8 @@ public class StatsGameManager : MonoBehaviour
     void Awake()
     {
         GenerateDeck();
+        //----Counter Of Cards to trigger events
+        _counterCards = 0;
 
         //----UI sliders
         _moneyIndicator = GameStats.transform.GetChild(0).GetComponent<Slider>();
@@ -77,16 +84,28 @@ public class StatsGameManager : MonoBehaviour
             _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyY);
             _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyY);
             _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityY);
+
+            if (_currentCardToShow.EventY != 0)
+            {
+                EventQueued.Add(_currentCardToShow.EventY);
+            }
             _currentCardToShow = ChangeToNextCard();
             CardToUI(_currentCardToShow);
+            _counterCards++;
         }
         else
         {
             _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyN);
             _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyN);
             _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityN);
+
+            if (_currentCardToShow.EventN != 0)
+            {
+                EventQueued.Add(_currentCardToShow.EventN);
+            }
             _currentCardToShow = ChangeToNextCard();
             CardToUI(_currentCardToShow);
+            _counterCards++;
         }
     }
 
@@ -108,20 +127,32 @@ public class StatsGameManager : MonoBehaviour
         return aux;
     }
 
+
     public Card ChangeToNextCard()
     {
-        Card nCard = new Card();
-        int random = Random.Range(1, 9);
-        for (int i = 0; i < MyDeck.Count; i++)
+        Card aux = new Card();
+        if (_counterCards == 2 && EventQueued.Count != 0)
         {
-            if (random == MyDeck[i].Id)
-            {
-                nCard = MyDeck[i];
-                break;
-            }
+            Debug.Log("Event Triggered!");
+            _counterCards = 0;
+            aux = MyEvents.Find(x => x.Id == EventQueued[0]);
+            EventQueued.Remove(EventQueued[0]);
+            return aux;
         }
-        return nCard;
+        else
+        {
+            int random = Random.Range(1, 10);
+            aux = MyDeck.Find(x => x.Id == random);
 
+            while (aux == null)
+            {
+                int random2 = Random.Range(1, 9);
+                aux = MyDeck.Find(x => x.Id == random2);
+            }
+            Debug.Log(aux.Id);
+
+            return aux;
+        }
     }
 
     public void CardToUI(Card currentCard)//de la base de datos a mostrarla por pantalla
@@ -155,12 +186,19 @@ public class StatsGameManager : MonoBehaviour
             int.TryParse(row[11], out ncard.EventY);
             int.TryParse(row[12], out ncard.EventN);
 
+            if (ncard.isEvent == 1)
+            {
+                MyEvents.Add(ncard);
+            }
+            if (ncard.isEvent == 0)
+            {
+                MyDeck.Add(ncard);
+            }
+
             if (ncard.Id == 1)
             {
                 _currentCardToShow = new Card(ncard);
             }
-
-            MyDeck.Add(ncard);
         }
     }
 
