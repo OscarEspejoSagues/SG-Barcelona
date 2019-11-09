@@ -131,7 +131,7 @@ public class StatsGameManager : MonoBehaviour
     public Card ChangeToNextCard()
     {
         Card aux = new Card();
-        if (_counterCards == 2 && EventQueued.Count != 0)
+        if (_counterCards >= 2 && EventQueued.Count != 0)
         {
             Debug.Log("Event Triggered!");
             _counterCards = 0;
