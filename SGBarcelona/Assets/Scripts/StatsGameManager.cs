@@ -12,6 +12,7 @@ public class StatsGameManager : MonoBehaviour
     public Button ButtonYes;
     public Button ButtonNo;
     public Button ButtonOk;
+    public GameObject SeaLevel;
     [SerializeField] Button Card;
     [SerializeField] Button Description;
 
@@ -34,6 +35,9 @@ public class StatsGameManager : MonoBehaviour
     private Image _cardImage;
     private Text _consequenceTitle;
 
+    //----Sea Level
+    private Image _seaImage;
+
 
     void Awake()
     {
@@ -53,6 +57,9 @@ public class StatsGameManager : MonoBehaviour
         _cardDescription = GameCard.transform.GetChild(0).GetComponent<Text>(); //CARD DESCRIPTION
         _cardImage = GameCard.transform.GetChild(1).GetComponent<Image>();
         _consequenceTitle = GameCard.transform.GetChild(2).GetComponent<Text>();
+
+        //----Sea Level
+        _seaImage = SeaLevel.transform.GetComponent<Image>();
     }
 
     // Start is called before the first frame update
@@ -110,6 +117,7 @@ public class StatsGameManager : MonoBehaviour
             }
             _currentCardToShow = ChangeToNextCard();
             CardToUI(_currentCardToShow);
+            _seaImage.rectTransform.sizeDelta = new Vector2(660, 400);
             _counterCards++;
         }
         else
