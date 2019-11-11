@@ -11,6 +11,7 @@ public class StatsGameManager : MonoBehaviour
     public GameObject GameStats;
     public Button ButtonYes;
     public Button ButtonNo;
+    public Button ButtonOk;
     [SerializeField] Button Card;
     [SerializeField] Button Description;
 
@@ -25,11 +26,13 @@ public class StatsGameManager : MonoBehaviour
 
     private Card _currentCardToShow;
 
-    private int _counterCards; 
+    private int _counterCards;
+    private bool _showEvent;
 
     //----UI
     private Text _cardDescription;
     private Image _cardImage;
+    private Text _consequenceTitle;
 
 
     void Awake()
@@ -37,6 +40,9 @@ public class StatsGameManager : MonoBehaviour
         GenerateDeck();
         //----Counter Of Cards to trigger events
         _counterCards = 0;
+
+        //----Bold for Event
+        _showEvent = false;
 
         //----UI sliders
         _moneyIndicator = GameStats.transform.GetChild(0).GetComponent<Slider>();
@@ -46,14 +52,18 @@ public class StatsGameManager : MonoBehaviour
         //----UI
         _cardDescription = GameCard.transform.GetChild(0).GetComponent<Text>(); //CARD DESCRIPTION
         _cardImage = GameCard.transform.GetChild(1).GetComponent<Image>();
+        _consequenceTitle = GameCard.transform.GetChild(2).GetComponent<Text>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         ResetValue();
+
         ButtonYes.onClick.AddListener(AcceptAction);
         ButtonNo.onClick.AddListener(DenyAction);
+        ButtonOk.onClick.AddListener(OkEvent);
+
         Card.onClick.AddListener(CardDescription);
         Description.onClick.AddListener(CloseDescription);
         CardToUI(_currentCardToShow);
@@ -65,6 +75,15 @@ public class StatsGameManager : MonoBehaviour
         _moneyIndicator.value = 0.5f;
         _happinessIndicator.value = 0.5f;
         _citystateIndicator.value = 0.5f;
+    }
+
+    public void OkEvent()
+    {
+        ButtonYes.gameObject.SetActive(true);
+        ButtonNo.gameObject.SetActive(true);
+        ButtonOk.gameObject.SetActive(false);
+        _consequenceTitle.gameObject.SetActive(false);
+        AcceptAction();
     }
 
     public void AcceptAction()
@@ -131,25 +150,30 @@ public class StatsGameManager : MonoBehaviour
     public Card ChangeToNextCard()
     {
         Card aux = new Card();
-        if (_counterCards >= 2 && EventQueued.Count != 0)
+        if (_counterCards % 2==0 && EventQueued.Count != 0)
         {
             Debug.Log("Event Triggered!");
-            _counterCards = 0;
             aux = MyEvents.Find(x => x.Id == EventQueued[0]);
             EventQueued.Remove(EventQueued[0]);
+            _showEvent = true;
             return aux;
         }
         else
         {
             int random = Random.Range(1, 10);
             aux = MyDeck.Find(x => x.Id == random);
+            //if (aux != null)
+            //{
+            //    MyDeck.Remove(aux);
+            //}
 
             while (aux == null)
             {
                 int random2 = Random.Range(1, 9);
                 aux = MyDeck.Find(x => x.Id == random2);
+                //MyDeck.Remove(aux);
             }
-            Debug.Log(aux.Id);
+            
 
             return aux;
         }
@@ -157,6 +181,19 @@ public class StatsGameManager : MonoBehaviour
 
     public void CardToUI(Card currentCard)//de la base de datos a mostrarla por pantalla
     {
+        if (_showEvent)
+        {
+            _cardDescription.fontStyle = FontStyle.Bold;
+            _showEvent = false;
+            ButtonYes.gameObject.SetActive(false);
+            ButtonNo.gameObject.SetActive(false);
+            ButtonOk.gameObject.SetActive(true);
+            _consequenceTitle.gameObject.SetActive(true);
+        }
+        else
+        {
+            _cardDescription.fontStyle = FontStyle.Normal;
+        }
         _cardDescription.text = currentCard.Description;
     }
 
