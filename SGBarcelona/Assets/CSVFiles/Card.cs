@@ -22,6 +22,8 @@ public class Card
     //---------
     public int EventY;
     public int EventN;
+    //---------
+    public string Background;
 
     public Card()
     {

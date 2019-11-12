@@ -230,6 +230,7 @@ public class StatsGameManager : MonoBehaviour
             //------
             int.TryParse(row[11], out ncard.EventY);
             int.TryParse(row[12], out ncard.EventN);
+            ncard.Background = row[13];
 
             if (ncard.isEvent == 1)
             {
