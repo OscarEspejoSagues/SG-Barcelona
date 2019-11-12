@@ -151,6 +151,14 @@ public class StatsGameManager : MonoBehaviour
         {
             aux = 0.050f + indicatorValue;
         }
+        if (valueStat == -2)
+        {
+            aux = 0.100f + indicatorValue;
+        }
+        if (valueStat == 2)
+        {
+            aux = indicatorValue - 0.100f;
+        }
         return aux;
     }
 
