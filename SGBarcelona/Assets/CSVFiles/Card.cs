@@ -25,6 +25,7 @@ public class Card
     //---------
     public string Background;
 
+
     public Card()
     {
 
@@ -34,6 +35,8 @@ public class Card
     {
         Id = ncard.Id;
         Description = ncard.Description;
+        Background = ncard.Background;
+
 
         MoneyY = ncard.MoneyY;
         HappyY = ncard.HappyY;

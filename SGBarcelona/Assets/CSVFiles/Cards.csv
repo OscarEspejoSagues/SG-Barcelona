@@ -1,10 +1,31 @@
-ID,IsEvent,Descripción,Dinero(Y),Felicidad(Y),Ciudad(Y),Dinero(N),Felicidad(N),Ciudad(N),Nivel del mar(Y),Nivel del mar(N),Evento(Y),Evento(N)
-1,0,¿Quieres aplicar una ley que limite el número de vehículos por familia?,0,-1,1,0,0,1,0,1,0,0
-2,0,¿Quieres fiinanciar una campaña de publicidad para concienciar sobre la reducción del CO2?,-1,0,1,0,1,1,0,1,0,0
-3,0,La L4 es la línea de metro más proxima al mar. ¿Quieres reforzarla para evitar futuras inundaciones?,-1,-1,1,0,0,0,0,0,0,4
-4,1,¡Oh no! la L4 se ha inundado debido a que no la reforzaste.,-1,-1,-1,1,1,1,0,0,0,0
-5,0,El turismo en Barcelona está creciendo. ¿Quieres construir una nueva terminal?,1,0,-1,0,0,-1,-1,0,6,7
-6,1,Debido al aumento del tráfico aéreo tras la construcción de la T3 el aeropuerto del prat ha quedado completamente inundado.,1,-1,-1,1,1,1,0,0,0,0
-7,1,Se ha reducido turismo en Barcelona y con ello el tráfico aéreo.,1,-1,1,1,1,-1,0,0,0,0
-8,0,El nivel de CO2 ha disminuido y el invierno ha sido mucho más frío.,0,0,0,0,0,0,-1,-1,0,0
-9,0,¿Quieres contruir una planta de reciclado de plásticos?,-1,1,1,0,0,0,-1,1,0,0
+ID,IsEvent,Descripción,Dinero(Y),Felicidad(Y),Ciudad(Y),Dinero(N),Felicidad(N),Ciudad(N),Nivel del mar(Y),Nivel del mar(N),Evento(Y),Evento(N),Background
+1,0,¿Quieres aplicar una ley que limite el número de vehículos por familia?,0,-2,1,0,0,-2,0,1,0,0,Esta ley ayudará a reducir la emisiones de CO2 en la ciudad y a reducir el tráfico en las zonas más concurridas.
+2,0,¿Quieres financiar una campaña de publicidad para concienciar sobre la reducción del CO2?,-1,0,1,0,1,1,0,1,0,0,"Si la campañá tiene éxito, las personas de la ciudad empezarán a utilizar más el transporte público."
+3,0,La L4 es la línea de metro más próxima al mar. ¿Quieres reforzarla para evitar futuras inundaciones?,-2,-1,1,0,0,0,0,0,0,4,"Al ser una de las lineas más proximas al mar, es la que tiene más riesgo de ser inundada en una subida del mar. Esto impediría que toda la costa sufriera pérdidas económicas muy importantes."
+4,1,¡Oh no! la L4 se ha inundado debido a que no la reforzaste.,-1,-1,-2,-1,-1,-2,0,0,0,0,"Como no quisiste reforzar la L4 para que pudiera resistir el aumento del nivel del mar, esta ha quedado completamente impracticable entre la Barceloneta y el Fòrum."
+5,0,El turismo en Barcelona está creciendo. ¿Quieres construir una nueva terminal en el aeropuerto?,1,0,-1,0,0,-1,-1,0,6,7,El turismo en Barcelona es una importante fuente de ingresos para la ciudad. 
+6,1,"Debido al aumento del tráfico aéreo tras la construcción de la T3, el aeropuerto de El Prat ha quedado completamente inundado.",-1,-1,-1,-1,-1,-1,0,0,0,0,"Tras abrir la nueva terminal, e ignorando las protestas de los colectivos verdes, el tráfico aereo aumento en un 60%. Esto comporto unas emisiones de CO2 a la atmosfera de manera masiva y redujo con ello la esperanza de vida de las personas en 5 años."
+7,1,Se ha reducido turismo en Barcelona y con ello el tráfico aéreo.,1,-1,1,1,-1,1,0,0,0,0,"Barcelona pierde dinero del turismo, pero la calidad del aire ha mejorado y los ciudadanos pueden respirar más tranquilos."
+8,0,El nivel de CO2 ha disminuido y el invierno ha sido mucho más frío.,0,-1,0,0,-1,0,-1,-1,0,0,"La gota fría ha hecho que este año se congelen todos los cultivos, eso sí, ha sido una temporada especialmente buena para las estaciones de esquí."
+9,0,¿Quieres construir una planta de reciclado de plásticos?,-1,1,1,1,0,-1,-1,1,0,0,Esta planta te permitirá tratar los plásticos que deshecha la ciudad y con ello poder reaprovechar estos plásticos y darles un nuevo uso.
+10,0,¿Quieres fomentar la politica de las tres R?,-1,0,1,0,-1,-1,-1,1,0,0,"Las 3R son Reducir, Reutilizar y Reciclar y es una propuesta sobre hábitos de consumo impulsada por Greenpeace."
+11,0,¿Quieres renovar la flota de autobuses con autobuses híbridos?,-1,0,1,1,0,-1,-1,1,0,0,"Los nuevos autobuses son mucho más eficientes que los de diésel, esto quiere decir que recorren más km con un depósito y al utilizar un motor electrico no emite CO2."
+12,0,"Se avecina un verano seco, ¿quieres limitar el uso del agua?",-1,-1,1,0,0,-1,0,0,14,13,"Debido a la subida de la temperatura de la tierra, cada vez esto será más frecuente."
+13,1,Las desalinizadoras de El Prat y de Tordera han colapsado debido a la demanda de agua.,-1,-1,-1,-1,-1,-1,0,0,0,0,Tanta demanda de agua ha hecho que las desalinizadoras no den a basto.
+14,1,La población ha conseguido dosificar el agua.,1,-1,1,1,-1,1,0,0,0,0,Los ciudadanos han visto la gravedad del asunto.
+15,0,"Se pronostica un tifón en el Mediterranio, ¿quieres preparar la ciudad ante el tifón? ",-1,0,1,0,-1,0,0,0,18,17,Debido a la subida de las temperaturas el Mediterraneo ha alcanzado las temperaturas de las aguas tropicales. Esto ha generado una gran inestabilidad en todo el mar.
+16,1,"Al no haber preparado la ciudad, el tifón ha causado decenas de muertes.",-1,-2,-1,-1,-2,-1,0,0,0,0,Barcelona no es una ciudad que esté preparada para soportar estos tipos de fenómenos atmosféricos.
+17,1,El tifón ha destruido algunas estructuras pero no hay que lamentar bajas.,0,0,-1,0,0,-1,0,0,0,0,"Grácias a que has reforzado y preparado las infraestructuras, has podido evitar una gran catástrofe."
+18,0,¿Quieres hacer campañas de promoción para el Bicing?,-1,0,0,1,0,0,0,0,0,0,"Al fomentar esta iniciativa puede que los ciudadano empiecen a ir de un lado a otro en bicicleta. Esto a parte de mejorar la calidad del aire dentro de la ciudad, también mejorará su estado físico y mental."
+19,0,"Te ofrecen construir un cementerio nuclear en Barcelona, ¿Aceptas?",-1,-1,-1,0,0,1,0,0,21,0,Un cemenerio nuclear es una zona especial habilitada para el amacenamiento de residuos radioactivos.
+20,1,"Al aceptar, ha generado trabajo y dinero.",2,1,0,2,1,0,0,0,22,22,Se necesitan desde obreros y vigilantes hasta ingenieros.
+21,1,Una brecha de seguridad ha causado un vertido de uranio en el suelo.,-1,-1,-2,-1,-1,-2,0,0,0,0,"Los accidentes en estos establecimientos no son muy usuales, actualmente estan muy controlados, pero hay que ir con cuidado."
+22,0,"Se aproximan mareas grandes debido a la subida del mar, ¿Quieres reforzar las playas?",-1,-1,0,1,0,0,0,0,0,24,"Las playas de Barcelona son una importante atracción turística, si queda inundada, Barcelona perderá un gran ingreso de dinero por parte del turismo."
+23,1,Esta vez no ha habido repercusiones graves.,0,1,0,0,1,0,0,0,0,0,La ciudad estaba preparada para soportar estos inconvenientes.
+24,0,¿Quieres vender terrenos para nuevos edificios?,1,-1,1,0,0,-1,0,0,0,0,"Los pisos en Barcelona han aumentado el precio en os ultimos años, esto es debido a que no hay más solares para edificar en la ciudad."
+25,0,"Recibes ayudas del Gobierno de España, ¿las aceptas?",1,-1,0,0,1,-1,0,0,0,0,El gobierno ha enviado dinero para que se invierta en mejorar las infraestructuras de la ciudad.
+26,0,¿Quieres aumentar los impuestos?,2,-2,0,-1,1,0,0,0,0,0,Al aumenta los impuestos dispondrás de más dinero para invertir en mejorar las infraestructuras de la ciudad.
+27,0,¿Quieres reducirte el sueldo para tener más margen de presupuesto?,1,2,0,0,-2,0,0,0,0,0,Los ciudadanos ven con buenos hojos este acto.
+28,0,"GreenPeace quiere hacer un evento de reciclaje en la zona de la Barceloneta, quieres participar en el?",0,0,0,0,0,0,0,0,30,31,GreenPeace es una de las mayores ONG activista y que conciencia sobre los importantes impactos que supondrá el cambio climático.
+29,1,Al participar la gente se muestra mas proactiva a la hora de reciclar,0,0,0,0,0,0,0,0,0,0,Esto evita que muchos desperdicios acaben dónde no toca.
+30,1,Al negarte una parte de la población te increpa y te tira huevos a tu casa,0,0,0,0,0,0,0,0,0,0,La gente está concieniada sobre ello y no entienden cómo no puedes darte cuenta sobre la grave situación.

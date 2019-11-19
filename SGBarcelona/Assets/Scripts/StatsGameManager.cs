@@ -14,8 +14,6 @@ public class StatsGameManager : MonoBehaviour
     public Button ButtonOk;
     public GameObject SeaLevel;
     [SerializeField] Button Card;
-    [SerializeField] Button Description;
-
 
     private List<Card> MyDeck = new List<Card>();
     private List<Card> MyEvents = new List<Card>();
@@ -34,6 +32,8 @@ public class StatsGameManager : MonoBehaviour
     private Text _cardDescription;
     private Image _cardImage;
     private Text _consequenceTitle;
+    private Text _cardBackground;
+    private bool showBackground = false;
 
     //----Sea Level
     private Image _seaImage;
@@ -72,7 +72,6 @@ public class StatsGameManager : MonoBehaviour
         ButtonOk.onClick.AddListener(OkEvent);
 
         Card.onClick.AddListener(CardDescription);
-        Description.onClick.AddListener(CloseDescription);
         CardToUI(_currentCardToShow);
     }
 
@@ -115,10 +114,17 @@ public class StatsGameManager : MonoBehaviour
             {
                 EventQueued.Add(_currentCardToShow.EventY);
             }
+
+
+            _currentCardToShow = null;
+
             _currentCardToShow = ChangeToNextCard();
+
             CardToUI(_currentCardToShow);
             _seaImage.rectTransform.sizeDelta = new Vector2(660, 400);
             _counterCards++;
+            Debug.Log("Deck cards: " + MyDeck.Count);
+
         }
         else
         {
@@ -130,10 +136,17 @@ public class StatsGameManager : MonoBehaviour
             {
                 EventQueued.Add(_currentCardToShow.EventN);
             }
+
+            _currentCardToShow = null;
+          
             _currentCardToShow = ChangeToNextCard();
+            
             CardToUI(_currentCardToShow);
             _counterCards++;
+
         }
+
+
     }
 
     public float CalculateValueToSlider(float indicatorValue, float valueStat)
@@ -165,8 +178,9 @@ public class StatsGameManager : MonoBehaviour
 
     public Card ChangeToNextCard()
     {
+
         Card aux = new Card();
-        if (_counterCards % 2==0 && EventQueued.Count != 0)
+        if (_counterCards % 2 == 0 && EventQueued.Count != 0)
         {
             Debug.Log("Event Triggered!");
             aux = MyEvents.Find(x => x.Id == EventQueued[0]);
@@ -176,23 +190,20 @@ public class StatsGameManager : MonoBehaviour
         }
         else
         {
-            int random = Random.Range(1, 10);
+            int random = Random.Range(1, MyDeck.Count);
             aux = MyDeck.Find(x => x.Id == random);
-            //if (aux != null)
-            //{
-            //    MyDeck.Remove(aux);
-            //}
+            Debug.Log("Random 1: " + random);
 
             while (aux == null)
             {
-                int random2 = Random.Range(1, 9);
+                int random2 = Random.Range(1, MyDeck.Count);
                 aux = MyDeck.Find(x => x.Id == random2);
-                //MyDeck.Remove(aux);
+                Debug.Log("Random 2: " + random2);
             }
-            
 
             return aux;
         }
+
     }
 
     public void CardToUI(Card currentCard)//de la base de datos a mostrarla por pantalla
@@ -200,6 +211,7 @@ public class StatsGameManager : MonoBehaviour
         if (_showEvent)
         {
             _cardDescription.fontStyle = FontStyle.Bold;
+
             _showEvent = false;
             ButtonYes.gameObject.SetActive(false);
             ButtonNo.gameObject.SetActive(false);
@@ -258,18 +270,33 @@ public class StatsGameManager : MonoBehaviour
 
     public void CardDescription()
     {
-        Description.gameObject.SetActive(true);
-        Card.gameObject.SetActive(false);
+        // Card.gameObject.SetActive(false);
+        if (showBackground)
+        {
+            GameCard.transform.GetChild(0).gameObject.SetActive(false);
+            GameCard.transform.GetChild(3).gameObject.SetActive(true);
+            //GameCard.transform.GetChild(3).GetComponent<Text>().text = _currentCardToShow.Background;
+            showBackground = false;
+        }
+           
+        else
+        {
+            GameCard.transform.GetChild(0).gameObject.SetActive(true);
+            GameCard.transform.GetChild(3).gameObject.SetActive(false);
+            //GameCard.transform.GetChild(3).GetComponent<Text>().text = _currentCardToShow.Description;
+            showBackground = true;
+        }
+            
+      
     }
-    public void CloseDescription()
-    {
-        Description.gameObject.SetActive(false);
-        Card.gameObject.SetActive(true);
-    }
+    
 
     // Update is called once per frame
     void Update()
     {
-
+        if (_counterCards == MyDeck.Count)
+        {
+            Debug.Log("AAAAAA");
+        }
     }
 }
