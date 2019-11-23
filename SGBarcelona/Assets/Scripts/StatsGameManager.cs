@@ -104,40 +104,59 @@ public class StatsGameManager : MonoBehaviour
 
     public void ApplyCard(bool Accept)
     {
-        if (Accept)
+        if (_currentCardToShow == null)
         {
-            _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyY);
-            _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyY);
-            _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityY);
-
-            if (_currentCardToShow.EventY != 0)
-            {
-                EventQueued.Add(_currentCardToShow.EventY);
-            }
-
-            _currentCardToShow = ChangeToNextCard();
-            CardToUI(_currentCardToShow);
-            _counterCards++;
-
+            Debug.Log("end game");
         }
         else
         {
-            _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyN);
-            _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyN);
-            _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityN);
-
-            if (_currentCardToShow.EventN != 0)
+            if (Accept)
             {
-                EventQueued.Add(_currentCardToShow.EventN);
+                _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyY);
+                _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyY);
+                _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityY);
+
+                if (_currentCardToShow.EventY != 0)
+                {
+                    EventQueued.Add(_currentCardToShow.EventY);
+                }
+                if (!CheckIfAllSeen())
+                {
+                    _currentCardToShow = ChangeToNextCard();
+                    CardToUI(_currentCardToShow);
+                    _counterCards++;
+                }
+                else
+                {
+                    Debug.Log("ACABA EL JUEGO");
+                }
+
+
             }
+            else
+            {
 
-            _currentCardToShow = ChangeToNextCard();
-            CardToUI(_currentCardToShow);
-            _counterCards++;
+                _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyN);
+                _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyN);
+                _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityN);
 
+                if (_currentCardToShow.EventN != 0)
+                {
+                    EventQueued.Add(_currentCardToShow.EventN);
+                }
+                if (!CheckIfAllSeen())
+                {
+                    _currentCardToShow = ChangeToNextCard();
+                    CardToUI(_currentCardToShow);
+                    _counterCards++;
+                }
+                else
+                {
+                    Debug.Log("ACABA EL JUEGO");
+                }
+
+            }
         }
-
-
     }
 
     public void EraseCard(Card cardToErase)
@@ -187,7 +206,6 @@ public class StatsGameManager : MonoBehaviour
         Card aux = new Card();
         if (_counterCards % 2 == 0 && EventQueued.Count != 0)
         {
-            Debug.Log("Event Triggered!");
             aux = MyEvents.Find(x => x.Id == EventQueued[0]);
             EventQueued.Remove(EventQueued[0]);
             _showEvent = true;
@@ -204,6 +222,25 @@ public class StatsGameManager : MonoBehaviour
                 aux = MyDeck.Find(x => x.Id == random2);
 
             } while (aux == null);
+
+            if (aux.Seen)
+            {
+                for (int i=0; i < MyDeck.Count; i++)
+                {
+                    if (!MyDeck[i].Seen)
+                    {
+                        aux = MyDeck[i];
+                        break;
+                    }
+                }
+            }
+            if (aux.Seen)
+            {
+                Debug.Log("END GAME");
+            }
+
+            aux.Seen = true;
+            Debug.Log(aux.Id);
 
             return aux;
         }
@@ -226,7 +263,10 @@ public class StatsGameManager : MonoBehaviour
         {
             _cardDescription.fontStyle = FontStyle.Normal;
         }
-        _cardDescription.text = currentCard.Description;
+        if (currentCard != null)
+        {
+            _cardDescription.text = currentCard.Description;
+        }
     }
 
     public void GenerateDeck()
@@ -270,6 +310,7 @@ public class StatsGameManager : MonoBehaviour
                 _currentCardToShow = new Card(ncard);
             }
         }
+       // Debug.Log("NUMERO CARTAS "+ MyDeck.Count);
     }
 
     public void CardDescription()
@@ -294,6 +335,25 @@ public class StatsGameManager : MonoBehaviour
       
     }
     
+    public bool CheckIfAllSeen()
+    {
+        int counter = 0;
+        for (int i=0; i < MyDeck.Count; i++)
+        {
+            if (MyDeck[i].Seen)
+            {
+                counter++;
+            }
+        }
+        if (counter == MyDeck.Count)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     // Update is called once per frame
     void Update()

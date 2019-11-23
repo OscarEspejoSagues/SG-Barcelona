@@ -24,7 +24,7 @@ public class Card
     public int EventN;
     //---------
     public string Background;
-
+    public bool Seen;
 
     public Card()
     {
@@ -51,6 +51,8 @@ public class Card
 
         EventY = ncard.EventY;
         EventN = ncard.EventN;
+
+        Seen = false;
     }
 
 }
