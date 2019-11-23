@@ -107,6 +107,7 @@ public class StatsGameManager : MonoBehaviour
         if (_currentCardToShow == null)
         {
             Debug.Log("end game");
+            _cardDescription.text = "END GAME";
         }
         else
         {
@@ -129,6 +130,7 @@ public class StatsGameManager : MonoBehaviour
                 else
                 {
                     Debug.Log("ACABA EL JUEGO");
+                    _cardDescription.text = "END GAME";
                 }
 
 
@@ -153,6 +155,7 @@ public class StatsGameManager : MonoBehaviour
                 else
                 {
                     Debug.Log("ACABA EL JUEGO");
+                    _cardDescription.text = "END GAME";
                 }
 
             }
