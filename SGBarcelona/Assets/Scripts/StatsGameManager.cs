@@ -115,15 +115,10 @@ public class StatsGameManager : MonoBehaviour
                 EventQueued.Add(_currentCardToShow.EventY);
             }
 
-
-            _currentCardToShow = null;
-
             _currentCardToShow = ChangeToNextCard();
-
             CardToUI(_currentCardToShow);
-            _seaImage.rectTransform.sizeDelta = new Vector2(660, 400);
             _counterCards++;
-            //EraseCard(_currentCardToShow);
+
         }
         else
         {
@@ -136,10 +131,7 @@ public class StatsGameManager : MonoBehaviour
                 EventQueued.Add(_currentCardToShow.EventN);
             }
 
-            _currentCardToShow = null;
-          
             _currentCardToShow = ChangeToNextCard();
-            
             CardToUI(_currentCardToShow);
             _counterCards++;
 
@@ -205,23 +197,13 @@ public class StatsGameManager : MonoBehaviour
         {
             int random = Random.Range(1, MyDeck.Count);
             aux = MyDeck.Find(x => x.Id == random);
-            Debug.Log("Random 1: " + random);
-
 
             do
             {
                 int random2 = Random.Range(1, MyDeck.Count);
-                aux = MyDeck.Find(x => x.Id == random2); //--> EL PROBLEMA VIENE DE AQUI, QUE LLEGA UN MOMENTO EN EL QUE AUX SIEMPRE ES NULL, NO SE LE ASIGNA NINGUN VALOR
-                Debug.Log("Random 2: " + random2);
+                aux = MyDeck.Find(x => x.Id == random2);
 
-            } while (aux == null && MyDeck.Count != 0);
-
-            //while (aux == null && MyDeck.Count != 0)
-            //{
-            //    int random2 = Random.Range(1, MyDeck.Count);
-            //    aux = MyDeck.Find(x => x.Id == random2); //--> EL PROBLEMA VIENE DE AQUI, QUE LLEGAUN MOMENTO EN EL QUE AUX SIEMPRE ES NULL, NO SE LE ASIGNA NINGUN VALOR
-            //    Debug.Log("Random 2: " + random2);
-            //}
+            } while (aux == null);
 
             return aux;
         }
@@ -288,7 +270,6 @@ public class StatsGameManager : MonoBehaviour
                 _currentCardToShow = new Card(ncard);
             }
         }
-       
     }
 
     public void CardDescription()
@@ -317,9 +298,6 @@ public class StatsGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_counterCards == MyDeck.Count)
-        {
-            Debug.Log("AAAAAA");
-        }
+
     }
 }
