@@ -36,7 +36,7 @@ public class StatsGameManager : MonoBehaviour
     private bool showBackground = false;
 
     //----Sea Level
-    private Image _seaImage;
+    private Slider _seaIndicator;
 
 
     void Awake()
@@ -59,7 +59,8 @@ public class StatsGameManager : MonoBehaviour
         _consequenceTitle = GameCard.transform.GetChild(2).GetComponent<Text>();
 
         //----Sea Level
-        _seaImage = SeaLevel.transform.GetComponent<Image>();
+        _seaIndicator = SeaLevel.transform.GetComponent<Slider>();
+        
     }
 
     // Start is called before the first frame update
@@ -73,6 +74,7 @@ public class StatsGameManager : MonoBehaviour
 
         Card.onClick.AddListener(CardDescription);
         CardToUI(_currentCardToShow);
+        
     }
 
 
@@ -81,6 +83,8 @@ public class StatsGameManager : MonoBehaviour
         _moneyIndicator.value = 0.5f;
         _happinessIndicator.value = 0.5f;
         _citystateIndicator.value = 0.5f;
+        _seaIndicator.value = 0.0f;
+
     }
 
     public void OkEvent()
@@ -116,6 +120,18 @@ public class StatsGameManager : MonoBehaviour
                 _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyY);
                 _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyY);
                 _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityY);
+                if(_currentCardToShow.SeaLvlY == 1)
+                {
+                    _seaIndicator.value = CalculateValueToSlider(_seaIndicator.value + 0.25f, _currentCardToShow.SeaLvlY);
+                }
+                else if(_currentCardToShow.SeaLvlY == -1)
+                {
+                    _seaIndicator.value = CalculateValueToSlider(_seaIndicator.value - 0.25f, _currentCardToShow.SeaLvlY);
+                }
+                else
+                {
+                    _seaIndicator.value = CalculateValueToSlider(_seaIndicator.value, _currentCardToShow.SeaLvlY);
+                }
 
                 if (_currentCardToShow.EventY != 0)
                 {
@@ -129,10 +145,36 @@ public class StatsGameManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("ACABA EL JUEGO");
-                    _cardDescription.text = "END GAME";
+                    EndGame();
                 }
-
+                if (_seaIndicator.value == 1.0f)
+                {
+                    EndGame();
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
+                }
+                if (_moneyIndicator.value == 0.0f)
+                {
+                    EndGame();
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
+                }
+                if (_happinessIndicator.value == 0.0f)
+                {
+                    EndGame();
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
+                }
+                if (_citystateIndicator.value == 0.0f)
+                {
+                    EndGame();
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
+                }
 
             }
             else
@@ -141,6 +183,19 @@ public class StatsGameManager : MonoBehaviour
                 _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyN);
                 _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyN);
                 _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityN);
+
+                if (_currentCardToShow.SeaLvlN == 1)
+                {
+                    _seaIndicator.value = CalculateValueToSlider(_seaIndicator.value + 0.25f, _currentCardToShow.SeaLvlN);
+                }
+                else if (_currentCardToShow.SeaLvlN == -1)
+                {
+                    _seaIndicator.value = CalculateValueToSlider(_seaIndicator.value - 0.25f, _currentCardToShow.SeaLvlN);
+                }
+                else
+                {
+                    _seaIndicator.value = CalculateValueToSlider(_seaIndicator.value, _currentCardToShow.SeaLvlN);
+                }
 
                 if (_currentCardToShow.EventN != 0)
                 {
@@ -154,8 +209,36 @@ public class StatsGameManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("ACABA EL JUEGO");
-                    _cardDescription.text = "END GAME";
+                    EndGame();
+                }
+
+                if(_seaIndicator.value == 1.0f)
+                {
+                    EndGame();
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
+                }
+                if(_moneyIndicator.value == 0.0f)
+                {
+                    EndGame();
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
+                }
+                if (_happinessIndicator.value == 0.0f)
+                {
+                    EndGame();
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
+                }
+                if (_citystateIndicator.value == 0.0f)
+                {
+                    EndGame();
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
                 }
 
             }
@@ -239,7 +322,7 @@ public class StatsGameManager : MonoBehaviour
             }
             if (aux.Seen)
             {
-                Debug.Log("END GAME");
+                EndGame();
             }
 
             aux.Seen = true;
@@ -356,6 +439,12 @@ public class StatsGameManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void EndGame()
+    {
+        Debug.Log("ACABA EL JUEGO");
+        _cardDescription.text = "END GAME";
     }
 
     // Update is called once per frame
