@@ -118,6 +118,8 @@ public class StatsGameManager : MonoBehaviour
         {
             if (Accept)
             {
+                GameCard.transform.GetChild(2).gameObject.SetActive(false);
+                GameCard.transform.GetChild(0).gameObject.SetActive(true);
                 _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyY);
                 _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyY);
                 _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityY);
@@ -158,7 +160,8 @@ public class StatsGameManager : MonoBehaviour
             }
             else
             {
-
+                GameCard.transform.GetChild(2).gameObject.SetActive(false);
+                GameCard.transform.GetChild(0).gameObject.SetActive(true);
                 _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyN);
                 _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyN);
                 _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityN);
@@ -303,7 +306,10 @@ public class StatsGameManager : MonoBehaviour
             ButtonYes.gameObject.SetActive(false);
             ButtonNo.gameObject.SetActive(false);
             ButtonOk.gameObject.SetActive(true);
+            GameCard.transform.GetChild(2).gameObject.SetActive(false);
+            GameCard.transform.GetChild(0).gameObject.SetActive(true);
             _consequenceTitle.gameObject.SetActive(true);
+
         }
         else
         {
@@ -314,7 +320,7 @@ public class StatsGameManager : MonoBehaviour
             _cardDescription.text = currentCard.Description;
         }
     }
-
+    
     public void GenerateDeck()
     {
         string[] data = CardsDB.text.Split(new char[] { '\n' }); //separa las linias y las guarda como strings
