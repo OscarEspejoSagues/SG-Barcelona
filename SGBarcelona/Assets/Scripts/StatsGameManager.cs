@@ -30,7 +30,6 @@ public class StatsGameManager : MonoBehaviour
 
     //----UI
     private Text _cardDescription;
-    private Image _cardImage;
     private Text _consequenceTitle;
     private Text _cardBackground;
     private bool showBackground = false;
@@ -55,8 +54,7 @@ public class StatsGameManager : MonoBehaviour
 
         //----UI
         _cardDescription = GameCard.transform.GetChild(0).GetComponent<Text>(); //CARD DESCRIPTION
-        _cardImage = GameCard.transform.GetChild(1).GetComponent<Image>();
-        _consequenceTitle = GameCard.transform.GetChild(2).GetComponent<Text>();
+        _consequenceTitle = GameCard.transform.GetChild(1).GetComponent<Text>();
 
         //----Sea Level
         _seaIndicator = SeaLevel.transform.GetComponent<Slider>();
