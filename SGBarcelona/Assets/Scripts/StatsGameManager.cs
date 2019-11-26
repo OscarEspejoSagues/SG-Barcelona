@@ -120,6 +120,7 @@ public class StatsGameManager : MonoBehaviour
                 _moneyIndicator.value = CalculateValueToSlider(_moneyIndicator.value, _currentCardToShow.MoneyY);
                 _happinessIndicator.value = CalculateValueToSlider(_happinessIndicator.value, _currentCardToShow.HappyY);
                 _citystateIndicator.value = CalculateValueToSlider(_citystateIndicator.value, _currentCardToShow.CityY);
+
                 if(_currentCardToShow.SeaLvlY == 1)
                 {
                     _seaIndicator.value = CalculateValueToSlider(_seaIndicator.value + 0.25f, _currentCardToShow.SeaLvlY);
@@ -276,11 +277,11 @@ public class StatsGameManager : MonoBehaviour
         }
         if (valueStat == -2)
         {
-            aux = 0.100f + indicatorValue;
+            aux = indicatorValue - 0.150f;
         }
         if (valueStat == 2)
         {
-            aux = indicatorValue - 0.100f;
+            aux = 0.150f + indicatorValue;
         }
         return aux;
     }
