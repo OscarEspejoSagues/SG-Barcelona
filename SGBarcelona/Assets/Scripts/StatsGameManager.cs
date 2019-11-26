@@ -406,16 +406,16 @@ public class StatsGameManager : MonoBehaviour
         if (showBackground)
         {
             GameCard.transform.GetChild(0).gameObject.SetActive(false);
-            GameCard.transform.GetChild(3).gameObject.SetActive(true);
-            GameCard.transform.GetChild(3).GetComponent<Text>().text = _currentCardToShow.Background;
+            GameCard.transform.GetChild(2).gameObject.SetActive(true);
+            GameCard.transform.GetChild(2).GetComponent<Text>().text = _currentCardToShow.Background;
             showBackground = false;
         }
            
         else
         {
             GameCard.transform.GetChild(0).gameObject.SetActive(true);
-            GameCard.transform.GetChild(3).gameObject.SetActive(false);
-            GameCard.transform.GetChild(3).GetComponent<Text>().text = _currentCardToShow.Description;
+            GameCard.transform.GetChild(2).gameObject.SetActive(false);
+            GameCard.transform.GetChild(2).GetComponent<Text>().text = _currentCardToShow.Description;
             showBackground = true;
         }
             
