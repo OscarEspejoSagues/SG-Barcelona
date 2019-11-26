@@ -108,8 +108,11 @@ public class StatsGameManager : MonoBehaviour
     {
         if (_currentCardToShow == null)
         {
-            Debug.Log("end game");
-            _cardDescription.text = "END GAME";
+            Debug.Log("ACABA EL JUEGO");
+            _cardDescription.text = "WIN\nHas conseguido evitar la catástrofe.";
+            ButtonYes.enabled = false;
+            ButtonNo.enabled = false;
+            Card.enabled = false;
         }
         else
         {
@@ -144,36 +147,13 @@ public class StatsGameManager : MonoBehaviour
                 }
                 else
                 {
-                    EndGame();
-                }
-                if (_seaIndicator.value == 1.0f)
-                {
-                    EndGame();
+                    Debug.Log("ACABA EL JUEGO");
+                    _cardDescription.text = "WIN\nHas conseguido evitar la catástrofe.";
                     ButtonYes.enabled = false;
                     ButtonNo.enabled = false;
                     Card.enabled = false;
                 }
-                if (_moneyIndicator.value == 0.0f)
-                {
-                    EndGame();
-                    ButtonYes.enabled = false;
-                    ButtonNo.enabled = false;
-                    Card.enabled = false;
-                }
-                if (_happinessIndicator.value == 0.0f)
-                {
-                    EndGame();
-                    ButtonYes.enabled = false;
-                    ButtonNo.enabled = false;
-                    Card.enabled = false;
-                }
-                if (_citystateIndicator.value == 0.0f)
-                {
-                    EndGame();
-                    ButtonYes.enabled = false;
-                    ButtonNo.enabled = false;
-                    Card.enabled = false;
-                }
+                EndGame();
 
             }
             else
@@ -208,37 +188,14 @@ public class StatsGameManager : MonoBehaviour
                 }
                 else
                 {
-                    EndGame();
+                    Debug.Log("ACABA EL JUEGO");
+                    _cardDescription.text = "WIN\nHas conseguido evitar la catástrofe.";
+                    ButtonYes.enabled = false;
+                    ButtonNo.enabled = false;
+                    Card.enabled = false;
                 }
 
-                if(_seaIndicator.value == 1.0f)
-                {
-                    EndGame();
-                    ButtonYes.enabled = false;
-                    ButtonNo.enabled = false;
-                    Card.enabled = false;
-                }
-                if(_moneyIndicator.value == 0.0f)
-                {
-                    EndGame();
-                    ButtonYes.enabled = false;
-                    ButtonNo.enabled = false;
-                    Card.enabled = false;
-                }
-                if (_happinessIndicator.value == 0.0f)
-                {
-                    EndGame();
-                    ButtonYes.enabled = false;
-                    ButtonNo.enabled = false;
-                    Card.enabled = false;
-                }
-                if (_citystateIndicator.value == 0.0f)
-                {
-                    EndGame();
-                    ButtonYes.enabled = false;
-                    ButtonNo.enabled = false;
-                    Card.enabled = false;
-                }
+                EndGame();
 
             }
         }
@@ -321,7 +278,11 @@ public class StatsGameManager : MonoBehaviour
             }
             if (aux.Seen)
             {
-                EndGame();
+                Debug.Log("ACABA EL JUEGO");
+                _cardDescription.text = "WIN\nHas conseguido evitar la catástrofe.";
+                ButtonYes.enabled = false;
+                ButtonNo.enabled = false;
+                Card.enabled = false;
             }
 
             aux.Seen = true;
@@ -442,8 +403,40 @@ public class StatsGameManager : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("ACABA EL JUEGO");
-        _cardDescription.text = "END GAME";
+
+        if(_moneyIndicator.value == 0)
+        {
+            Debug.Log("ACABA EL JUEGO");
+            _cardDescription.text = "END GAME\nTe has quedado sin fondos para poder continuar.";
+            ButtonYes.enabled = false;
+            ButtonNo.enabled = false;
+            Card.enabled = false;
+        }
+        if(_happinessIndicator.value == 0)
+        {
+            Debug.Log("ACABA EL JUEGO");
+            _cardDescription.text = "END GAME\nTus ciudadanos estan muy enfadados y te han destituido del cargo.";
+            ButtonYes.enabled = false;
+            ButtonNo.enabled = false;
+            Card.enabled = false;
+        }
+        if (_citystateIndicator.value == 0)
+        {
+            Debug.Log("ACABA EL JUEGO");
+            _cardDescription.text = "END GAME\nLa ciudad está en muy mal estado, así no hay quien viva.";
+            ButtonYes.enabled = false;
+            ButtonNo.enabled = false;
+            Card.enabled = false;
+        }
+        if (_seaIndicator.value == 1)
+        {
+            Debug.Log("ACABA EL JUEGO");
+            _cardDescription.text = "END GAME\nLa ciudad ha sido engullida por el mar.";
+            ButtonYes.enabled = false;
+            ButtonNo.enabled = false;
+            Card.enabled = false;
+        }
+
     }
 
     // Update is called once per frame
