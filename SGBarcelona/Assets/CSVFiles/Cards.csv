@@ -10,7 +10,7 @@ ID,IsEvent,Descripción,Dinero(Y),Felicidad(Y),Ciudad(Y),Dinero(N),Felicidad(N),
 9,0,¿Quieres construir una planta de reciclado de plásticos?,1,-1,1,0,1,1,0,1,0,0,Esta planta te permitirá tratar los plásticos que deshecha la ciudad y con ello poder reaprovechar estos plásticos y darles un nuevo uso.
 10,0,¿Quieres fomentar la politica de las tres R?,-1,0,1,0,0,-1,-1,1,0,0,Las 3R son Reducir Reutilizar y Reciclar y es una propuesta sobre hábitos de consumo impulsada por Greenpeace.
 11,0,¿Quieres renovar la flota de autobuses con autobuses híbridos?,-1,1,1,1,0,-1,0,1,0,0,Los nuevos autobuses son mucho más eficientes que los de diésel esto quiere decir que recorren más km con un depósito y al utilizar un motor electrico no emite CO2.
-12,0,Se avecina un verano seco ¿quieres limitar el uso del agua?,0,-2,-2,0,0,0,0,1,14,13,Debido a la subida de la temperatura de la tierra cada vez esto será más frecuente.
+12,0,Se avecina un verano seco ¿quieres limitar el uso del agua?,0,-2,-2,0,0,0,0,0,14,13,Debido a la subida de la temperatura de la tierra cada vez esto será más frecuente.
 13,1,Las desalinizadoras de El Prat y de Tordera han colapsado debido a la demanda de agua.,-2,-2,-2,-2,-2,-2,1,1,0,0,Tanta demanda de agua ha hecho que las desalinizadoras no den a basto.
 14,1,La población ha conseguido dosificar el agua.,2,2,2,2,2,2,-1,-1,0,0,Los ciudadanos han visto la gravedad del asunto.
 15,0,Se pronostica un tifón en el Mediterranio ¿quieres preparar la ciudad ante el tifón? ,-1,0,2,0,0,-2,0,0,17,16,Debido a la subida de las temperaturas el Mediterraneo ha alcanzado las temperaturas de las aguas tropicales. Esto ha generado una gran inestabilidad en todo el mar.
@@ -26,6 +26,6 @@ ID,IsEvent,Descripción,Dinero(Y),Felicidad(Y),Ciudad(Y),Dinero(N),Felicidad(N),
 25,0,Recibes ayudas del Gobierno de España ¿las aceptas?,2,-1,0,0,1,-1,0,0,0,0,El gobierno ha enviado dinero para que se invierta en mejorar las infraestructuras de la ciudad.
 26,0,¿Quieres aumentar los impuestos?,2,-2,0,0,1,0,0,0,0,0,Al aumenta los impuestos dispondrás de más dinero para invertir en mejorar las infraestructuras de la ciudad.
 27,0,¿Quieres reducirte el sueldo para tener más margen de presupuesto?,1,2,0,0,-2,0,0,0,0,0,Los ciudadanos ven con buenos hojos este acto.
-28,0,"GreenPeace quiere hacer un evento de reciclaje en la zona de la Barceloneta, quieres participar en el?",0,2,0,0,-1,0,0,0,29,30,GreenPeace es una de las mayores ONG activista y que conciencia sobre los importantes impactos que supondrá el cambio climático.
+28,0,GreenPeace quiere hacer un evento de reciclaje en la zona de la Barceloneta quieres participar en el?,0,2,0,0,-1,0,0,0,29,30,GreenPeace es una de las mayores ONG activista y que conciencia sobre los importantes impactos que supondrá el cambio climático.
 29,1,Al participar la gente se muestra mas proactiva a la hora de reciclar,0,0,2,0,2,0,-1,-1,0,0,Esto evita que muchos desperdicios acaben dónde no toca.
 30,1,Al negarte una parte de la población te increpa y te tira huevos a tu casa,-1,0,0,-1,0,0,1,1,0,0,La gente está concieniada sobre ello y no entienden cómo no puedes darte cuenta sobre la grave situación.
