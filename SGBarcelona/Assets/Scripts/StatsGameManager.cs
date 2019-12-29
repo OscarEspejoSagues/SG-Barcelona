@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class StatsGameManager : MonoBehaviour
@@ -27,6 +28,7 @@ public class StatsGameManager : MonoBehaviour
 
     private int _counterCards;
     private bool _showEvent;
+    private bool _isgameended;
 
     //----UI
     private Text _cardDescription;
@@ -58,7 +60,10 @@ public class StatsGameManager : MonoBehaviour
 
         //----Sea Level
         _seaIndicator = SeaLevel.transform.GetComponent<Slider>();
-        
+
+        _isgameended = false;
+
+
     }
 
     // Start is called before the first frame update
@@ -91,7 +96,15 @@ public class StatsGameManager : MonoBehaviour
         ButtonNo.gameObject.SetActive(true);
         ButtonOk.gameObject.SetActive(false);
         _consequenceTitle.gameObject.SetActive(false);
-        AcceptAction();
+
+        if (_isgameended)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+        else
+        {
+            AcceptAction();
+        }
     }
 
     public void AcceptAction()
@@ -359,6 +372,7 @@ public class StatsGameManager : MonoBehaviour
 
             if (ncard.Id == 1)
             {
+                ncard.Seen = true;
                 _currentCardToShow = new Card(ncard);
             }
         }
@@ -414,35 +428,42 @@ public class StatsGameManager : MonoBehaviour
         {
             Debug.Log("ACABA EL JUEGO");
             _cardDescription.text = "END GAME\nTe has quedado sin fondos para poder continuar.";
-            ButtonYes.enabled = false;
-            ButtonNo.enabled = false;
+            ButtonYes.gameObject.SetActive(false);
+            ButtonNo.gameObject.SetActive(false);
+            ButtonOk.gameObject.SetActive(true);
+            _isgameended = true;
             Card.enabled = false;
         }
         if(_happinessIndicator.value == 0)
         {
             Debug.Log("ACABA EL JUEGO");
             _cardDescription.text = "END GAME\nTus ciudadanos estan muy enfadados y te han destituido del cargo.";
-            ButtonYes.enabled = false;
-            ButtonNo.enabled = false;
+            ButtonYes.gameObject.SetActive(false);
+            ButtonNo.gameObject.SetActive(false);
+            ButtonOk.gameObject.SetActive(true);
+            _isgameended = true;
             Card.enabled = false;
         }
         if (_citystateIndicator.value == 0)
         {
             Debug.Log("ACABA EL JUEGO");
             _cardDescription.text = "END GAME\nLa ciudad está en muy mal estado, así no hay quien viva.";
-            ButtonYes.enabled = false;
-            ButtonNo.enabled = false;
+            ButtonYes.gameObject.SetActive(false);
+            ButtonNo.gameObject.SetActive(false);
+            ButtonOk.gameObject.SetActive(true);
+            _isgameended = true;
             Card.enabled = false;
         }
         if (_seaIndicator.value == 1)
         {
             Debug.Log("ACABA EL JUEGO");
             _cardDescription.text = "END GAME\nLa ciudad ha sido engullida por el mar.";
-            ButtonYes.enabled = false;
-            ButtonNo.enabled = false;
+            ButtonYes.gameObject.SetActive(false);
+            ButtonNo.gameObject.SetActive(false);
+            ButtonOk.gameObject.SetActive(true);
+            _isgameended = true;
             Card.enabled = false;
         }
-
     }
 
     // Update is called once per frame
